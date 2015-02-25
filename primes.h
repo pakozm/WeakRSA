@@ -1,6 +1,5 @@
 /*
-  This file is a didactic implementation of RSA algorithm, key pair computation
-  part
+  This file is a didactic implementation of RSA algorithm
   
   Copyright (c) 2015, Francisco Zamora-Martínez
   
