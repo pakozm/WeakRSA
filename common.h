@@ -29,9 +29,11 @@
 
 #include <vector>
 
-typedef unsigned short int Number;
-typedef unsigned int LongNumber;
+typedef unsigned int Number;
+typedef unsigned long int LongNumber;
 typedef unsigned char Byte;
+
+#define BLOCK_SIZE (sizeof(Number))
 
 void applyModExp(const std::vector<Number> &numbers, Number e, Number m,
                  std::vector<Number> &result);

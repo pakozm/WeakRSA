@@ -42,9 +42,9 @@ void readAllInputBytes(vector<Byte> &bytes) {
 
 void convertBytesVectorIntoNumbersVector(const vector<Byte> &bytes,
                                          vector<Number> &numbers) {
-  for (unsigned int i=0; i<bytes.size(); i += sizeof(Number)) {
+  for (unsigned int i=0; i<bytes.size(); i += BLOCK_SIZE) {
     Number n = 0;
-    for (unsigned int j=0; j<sizeof(Number); ++j) {
+    for (unsigned int j=0; j<BLOCK_SIZE; ++j) {
       Byte c;
       if ( (i+j) < bytes.size() ) c = bytes[i+j];
       else c = 0;

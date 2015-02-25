@@ -53,9 +53,9 @@ Number computePublicKeyExponent(Number phi_n) {
 }
 
 Number computePrivateKeyExponent(Number phi_n, Number e) {
-  Number Y = 1;
-  while( ( ( Y*phi_n + 1 ) % e ) != 0 ) ++Y;
-  return (Y*phi_n + 1) / e;
+  LongNumber d=3;
+  while( (d*e) % phi_n != 1 ) d += 2;
+  return d;
 }
 
 Number findPrime(Number a, Number b) {
@@ -70,8 +70,8 @@ int main() {
   Number min_n = (1 << (nbits - 1)) + 1;
   Number max_n = static_cast<Number>((static_cast<LongNumber>(1) << nbits) - 1);
   cout << "Computing RSA for " << nbits << " bits" << endl;
-  Number a = static_cast<Number>(ceilf(sqrtf(static_cast<float>(min_n))));
-  Number b = static_cast<Number>(floorf(sqrtf(static_cast<float>(max_n))));
+  Number a = static_cast<Number>(ceill(sqrtl(static_cast<long double>(min_n))));
+  Number b = static_cast<Number>(floorl(sqrtl(static_cast<long double>(max_n))));
   Number p = findPrime(a, b);
   Number q;
   do {

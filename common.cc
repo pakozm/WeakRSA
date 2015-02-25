@@ -36,12 +36,15 @@ bool isOdd(Number n) {
   return (n & 1) == 1;
 }
 
-// computes b^e (mod m)
+// https://en.wikipedia.org/wiki/Modular_exponentiation
 Number modExp(Number b, Number e, Number m) {
-  // https://en.wikipedia.org/wiki/Modular_exponentiation
   LongNumber result = 1;
-  for (Number i=0; i<e; ++i) {
-    result = (result * b) % m;
+  LongNumber base   = b;
+  base = base % m;
+  while(e>0) {
+    if (isOdd(e)) result = (result * base) % m;
+    e >>= 1;
+    base = (base * base) % m;
   }
   return result;
 }

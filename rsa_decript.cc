@@ -42,7 +42,7 @@ void show(const vector<Number> &v) {
   for (unsigned int i=0; i<v.size(); ++i) {
     Number n = v[i];
     vector<Byte> bytes;
-    for (unsigned int j=0; j<sizeof(Number); ++j) {
+    for (unsigned int j=0; j<BLOCK_SIZE; ++j) {
       Byte b = n & 0xFF;
       if (b > 0) {
         bytes.push_back(b);
