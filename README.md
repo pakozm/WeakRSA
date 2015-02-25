@@ -23,8 +23,12 @@ Success!
 
 ## Generating pair of keys
 
-Using the command `./rsa_keys [SEED]` where SEED is an optional argument
-to initialize the random numbers generator.
+Using the command `./rsa_keys [PUB_FILE [PRIV_FILE [SEED]]]]` where PUB_FILE is
+an optional argument indicating where to store the public key (by default it is
+`public_key.txt`), PRIV_FILE is a second optional argument with the private key
+filename (by default it is `private_key.txt`), and SEED is a third optional
+argument with with the seed to initialize the random numbers generator (by
+default it is system dependent).
 
 ```
 $ ./rsa_keys

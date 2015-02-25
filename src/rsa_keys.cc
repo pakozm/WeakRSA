@@ -65,7 +65,18 @@ Number findPrime(Number a, Number b) {
   return primes[i];
 }
 
-int main() {
+int main(int argc, char **argv) {
+  const char *public_key = "public_key.txt";
+  const char *private_key = "private_key.txt";
+  if (argc > 1) {
+    public_key = argv[1];
+    if (argc > 2) {
+      private_key = argv[2];
+      if (argc > 3) {
+        srandom(atoi(argv[3]));
+      }
+    }
+  }
   Number nbits = sizeof(Number)*8;
   Number min_n = (1 << (nbits - 1)) + 1;
   Number max_n = static_cast<Number>((static_cast<LongNumber>(1) << nbits) - 1);
@@ -83,11 +94,11 @@ int main() {
   Number e = computePublicKeyExponent(phi_n);
   Number d = computePrivateKeyExponent(phi_n, e);
   //
-  ofstream public_key_file("public_key.txt");
+  ofstream public_key_file(public_key);
   public_key_file << e << endl << n << endl;
   public_key_file.close();
   //
-  ofstream private_key_file("private_key.txt");
+  ofstream private_key_file(private_key);
   private_key_file << d << endl << n << endl;
   private_key_file.close();
   //
