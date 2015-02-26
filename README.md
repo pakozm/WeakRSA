@@ -1,6 +1,15 @@
 # WeakRSA
-A very basic implementaion of RSA algorithm for educational purposes.
-For its execution in *nix systems (MacOS X, Ubuntu, etc):
+A very basic implementaion of RSA algorithm for educational purposes. It is
+slow, unsafe and it never should be used for real purposes.
+
+## Dependencies
+
+This software needs `unzip` or similar to unpack the sources, and `g++`
+compiler for compilation.
+
+## Execution
+
+For its execution in *nix systems (MacOS X, Linux, BSD flavors, etc):
 
 1. Download the [ZIP](https://github.com/pakozm/WeakRSA/archive/master.zip)
 2. Unzip it with command: `unzip WeakRSA-master.zip`
@@ -8,11 +17,14 @@ For its execution in *nix systems (MacOS X, Ubuntu, etc):
 4. Execute the test: `./execute.sh`
 ```
 $ ./execute.sh
+g++ -o build/rsa_keys.o -c src/rsa_keys.cc -O3 -Wall
 g++ -o build/common.o -c src/common.cc -O3 -Wall
-g++ -c -o build/primes.o src/primes.cc -O3 -Wall
-g++ -o rsa_keys src/rsa_keys.cc build/common.o build/primes.o -O3 -Wall
-g++ -o rsa_encript src/rsa_encript.cc build/common.o -O3 -Wall
-g++ -o rsa_decript src/rsa_decript.cc build/common.o -O3 -Wall
+g++ -o build/primes.o -c src/primes.cc -O3 -Wall
+g++ -o ./rsa_keys build/rsa_keys.o build/common.o build/primes.o -O3 -Wall
+g++ -o build/rsa_encript.o -c src/rsa_encript.cc -O3 -Wall
+g++ -o ./rsa_encript build/rsa_encript.o build/common.o -O3 -Wall
+g++ -o build/rsa_decript.o -c src/rsa_decript.cc -O3 -Wall
+g++ -o ./rsa_decript build/rsa_decript.o build/common.o -O3 -Wall
 GENERATING KEYS
 Computing RSA for 32 bits
 ENCRIPTING MESSAGE
