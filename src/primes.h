@@ -32,13 +32,21 @@
 
 #include "common.h"
 
+// static class which contains a set of primes numbers until a known upper bound
 class Primes {
   static std::set<Number> primes;
   static Number last_upper_bound;
   
 public:
+  // fills result vector with primes in range [a,b]
   static void getPrimesIn(Number a, Number b,
                           std::vector<Number> &result);
+  
+private:
+  // returns if a given number is a prime number, this is a private method, it
+  // can't be called outside the class; it requires the number to be less than the
+  // upper bound in Primes class
+  static bool isPrime(Number n);
 };
 
 #endif // PRIMES_H

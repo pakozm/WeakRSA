@@ -27,6 +27,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <fstream>
+#include <stack>
 #include <vector>
 
 #include "common.h"
@@ -38,20 +39,29 @@ void readAllNumbers(vector<Number> &numbers) {
   while(cin >> n) numbers.push_back(n);
 }
 
+void convertNumberToBytesStack(Number n, stack<Byte> &bytes) {
+  for (unsigned int j=0; j<BLOCK_SIZE; ++j) {
+    Byte b = n & 0xFF;
+    if (b > 0) {
+      bytes.push(b);
+    }
+    n >>= 8;
+  }  
+}
+
+void printBytesStack(stack<Byte> &bytes) {
+  while(!bytes.empty()) {
+    cout << bytes.top();
+    bytes.pop();
+  }
+}
+
 void show(const vector<Number> &v) {
   for (unsigned int i=0; i<v.size(); ++i) {
     Number n = v[i];
-    vector<Byte> bytes;
-    for (unsigned int j=0; j<BLOCK_SIZE; ++j) {
-      Byte b = n & 0xFF;
-      if (b > 0) {
-        bytes.push_back(b);
-      }
-      n >>= 8;
-    }
-    for (unsigned j=bytes.size(); j>0; --j) {
-      cout << bytes[j-1];
-    }
+    stack<Byte> bytes;
+    convertNumberToBytesStack(n, bytes);
+    printBytesStack(bytes);
   }
 }
 

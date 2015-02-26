@@ -35,6 +35,7 @@ typedef unsigned char Byte;
 
 #define BLOCK_SIZE (sizeof(Number))
 
+// function for modular exponentiation over a given vector of numbers
 void applyModExp(const std::vector<Number> &numbers, Number e, Number m,
                  std::vector<Number> &result);
 #endif // COMMON_H
